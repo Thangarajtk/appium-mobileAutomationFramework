@@ -77,24 +77,22 @@ Option 2:
 Install APK info app to retrieve appPackage and appActivity for the app installed in your device
 
 ## :pushpin: Inspecting Elements
-:point_right: uiautomatorviewer
+### uiautomatorviewer
+1) Go to the path - `<path to sdk folder>\tools\bin\`
+2) click on `uiautomatorviewer`
+3) On the UI Automator Viewer, click on Device Screenshot (uiautomator dump). Ui automator will capture the screenshot of current open screen in the device.
 
-   1) Go to the path - `<path to sdk folder>\tools\bin\`
-   2) click on `uiautomatorviewer`
-   3) On the UI Automator Viewer, click on Device Screenshot (uiautomator dump). Ui automator will capture the screenshot of current open screen in the device.
-   
-   <img width="700" height="450" alt="UiAutomatorViewer" src="https://user-images.githubusercontent.com/48508827/136441564-56869f6b-d220-4114-b00b-1312957f3d5b.png">
+<img width="700" height="450" alt="UiAutomatorViewer" src="https://user-images.githubusercontent.com/48508827/136441564-56869f6b-d220-4114-b00b-1312957f3d5b.png">
 
-:point_right: Appium Inspector
+### Appium Inspector
+1) Start the Appium Server and connect with Real device/Emulator.
+2) Open Appium Inspector app and provide the appium server details and Desired Capabilities.
 
-   1) Start the Appium Server and connect with Real device/Emulator.
-   2) Open Appium Inspector app and provide the appium server details and Desired Capabilities.
-   
-   <img width="700" alt="Appium Inspector" src="https://user-images.githubusercontent.com/48508827/136668610-7507a27d-1304-490a-b954-687d3bf6caa2.png">
+<img width="700" alt="Appium Inspector" src="https://user-images.githubusercontent.com/48508827/136668610-7507a27d-1304-490a-b954-687d3bf6caa2.png">
 
-   3) Click on Start session which will start the appium inspector with layout shown below.
+3) Click on Start session which will start the appium inspector with layout shown below.
 
-   <img width="700" alt="Appium " src="https://user-images.githubusercontent.com/48508827/136668632-343aab0d-9eef-4a2d-beee-fa35825f361a.png">
+<img width="700" alt="Appium " src="https://user-images.githubusercontent.com/48508827/136668632-343aab0d-9eef-4a2d-beee-fa35825f361a.png">
 
 ## :pushpin: Inspecting Element for mobile web browser
 ```
@@ -135,7 +133,7 @@ Set environment variable `APPIUM_HOME = <path to npm folder>\node_modules\appium
 
 :point_right: Supports parallel and sequential execution of tests.
 
-:point_right: Supports screen(video) recording of tests on Android and iOS. Configurable through `config.properties`
+:point_right: Ability to capture screen(video) recording of tests on Android and iOS. Configurable through `config.properties`
 
 :point_right: Supports capturing screenshots for passed/failed/skipped steps which is configurable through `config.properties`
 

@@ -2,10 +2,8 @@ package com.automate.utils.screenrecording;
 
 import com.automate.constants.FrameworkConstants;
 import com.automate.driver.DriverManager;
-import com.automate.enums.ConfigProperties;
 import io.appium.java_client.screenrecording.CanRecordScreen;
 import org.apache.commons.codec.binary.Base64;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,7 +19,7 @@ public final class ScreenRecordingUtils {
 
     public static void stopScreenRecording(String methodName) {
         String recordedVideoFile = ((CanRecordScreen) DriverManager.getDriver()).stopRecordingScreen();
-        String pathToWriteVideoFile = FrameworkConstants.PROJECT_PATH + "screen-recordings" + File.separator + methodName + ".mp4";
+        String pathToWriteVideoFile = FrameworkConstants.getScreenRecordingsPath() + File.separator + methodName + ".mp4";
         writeToOutputStream(pathToWriteVideoFile, recordedVideoFile);
     }
 
