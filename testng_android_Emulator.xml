@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <listeners>
+        <listener class-name="com.automate.listeners.Listeners"/>
+        <listener class-name="com.automate.listeners.AnnotationTransformer"/>
+    </listeners>
+    <test name="Test_NativeApp-Pixel3a_Emulator">
+        <parameter name="emulator" value="yes"></parameter>
+        <parameter name="platformName" value="android"></parameter>
+        <parameter name="udid" value="emulator-5554"></parameter>
+        <parameter name="deviceName" value="Pixel_3a_API_30"></parameter>
+        <parameter name="systemPort" value="7878"/>
+        <classes>
+            <class name="com.tests.LoginTest"/>
+<!--            <class name="com.tests.ProductsTest"/>-->
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Test_WebBrowser-Pixel3a_Emulator">
+        <parameter name="emulator" value="yes"></parameter>
+        <parameter name="platformName" value="android_web"></parameter>
+        <parameter name="udid" value="emulator-5554"></parameter>
+        <parameter name="deviceName" value="Pixel_3a_API_30"></parameter>
+        <parameter name="systemPort" value="7878"/>
+        <parameter name="chromeDriverPort" value="8787"/>
+        <classes>
+            <class name="com.tests.GoogleTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

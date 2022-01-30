@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <listeners>
+        <listener class-name="com.automate.listeners.Listeners"/>
+        <listener class-name="com.automate.listeners.AnnotationTransformer"/>
+    </listeners>
+
+    <test name="Test-OnePlus5">
+        <parameter name="emulator" value="no"></parameter>
+        <parameter name="platformName" value="android"></parameter>
+        <parameter name="udid" value=""></parameter>
+        <parameter name="deviceName" value=""></parameter>
+        <parameter name="systemPort" value="7878"/>
+        <classes>
+            <class name="com.tests.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

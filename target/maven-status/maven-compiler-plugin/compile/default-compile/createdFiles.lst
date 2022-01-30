@@ -1,0 +1,3 @@
+com\automate\pages\GoogleSearchPage.class
+com\automate\pages\GoogleSearchResultPage.class
+com\automate\driver\PlatformManager.class

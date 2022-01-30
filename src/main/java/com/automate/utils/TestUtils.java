@@ -1,0 +1,56 @@
+package com.automate.utils;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Objects;
+
+public class TestUtils {
+
+    public static void deleteFolder(File file) {
+        File[] contents = file.listFiles();
+        if (Objects.nonNull(contents)) {
+            for (File f : contents) {
+                deleteFolder(f);
+            }
+        }
+        file.delete();
+    }
+
+    public HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
+        HashMap<String, String> hmap = new HashMap<>();
+
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = docFactory.newDocumentBuilder();
+
+        Document document = builder.parse(in);
+        document.getDocumentElement().normalize();
+
+        Element root = document.getDocumentElement();
+        NodeList nList = document.getElementsByTagName("string");
+
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            Node node = nList.item(temp);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                hmap.put(element.getAttribute("name"), element.getTextContent());
+            }
+        }
+        return hmap;
+    }
+
+    public static Logger log() {
+        return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
+    }
+}
