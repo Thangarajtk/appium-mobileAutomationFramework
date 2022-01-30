@@ -3,3 +3,5 @@
 /Screenshots/
 /screen-recordings/
 /server-logs/
+/target/
+/.idea/

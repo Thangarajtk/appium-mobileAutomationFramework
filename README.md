@@ -8,7 +8,9 @@ Framework for Mobile test automation (Native app and Browser) on Android and IOS
 2) Install [NodeJS](https://nodejs.org/en/download/)
 3) Install [Android studio](https://developer.android.com/studio)
 4) Install Appium Server using npm (CLI) command `npm install -g appium`. Appium server version 1.22.1
-   - Use command `appium --version` to check the installed appium version
+```
+Command to check the installed appium version: `appium --version`
+```
 5) Add below Android SDK path in the environment variable
 ```
     - ANDROID_HOME = <path to Sdk folder>
@@ -48,14 +50,14 @@ To check ios set up `appium-doctor --ios`
 3) Enable USB debugging
 4) Run command `adb devices` in cmd prompt to check whether the device is recognised
 
-## :pushpin: Mirror real android/ios device to your desktop
+## :pushpin: Mirror android/ios device to your desktop
 1) Download [Vysor](https://www.vysor.io/)
 
 ## :pushpin: Start Android Emulator from Command line
 1) Open command prompt, go to <sdk emulator path>
 ```
-Command to stard AVD `emulator -avd <avd_name>`
-Command to stop/kill AVD `adb -e emu kill`
+Command to stard AVD: `emulator -avd <avd_name>`
+Command to stop/kill AVD: `adb -e emu kill`
 ```
 
 ## :pushpin: Pushing the App (.apk file) to Android Emulator:
@@ -75,35 +77,37 @@ Option 2:
 Install APK info app to retrieve appPackage and appActivity for the app installed in your device
 
 ## :pushpin: Inspecting Elements
-1) uiautomatorviewer
-   1) Go to the path - C:\Users\Admin\AppData\Local\Android\Sdk\tools\bin\ 
+:point_right: uiautomatorviewer
+
+   1) Go to the path - `<path to sdk folder>\tools\bin\`
    2) click on `uiautomatorviewer`
    3) On the UI Automator Viewer, click on Device Screenshot (uiautomator dump). Ui automator will capture the screenshot of current open screen in the device.
    
-   <img width="800" height="450" alt="UiAutomatorViewer" src="https://user-images.githubusercontent.com/48508827/136441564-56869f6b-d220-4114-b00b-1312957f3d5b.png">
-   
-2) Appium Inspector
+   <img width="700" height="450" alt="UiAutomatorViewer" src="https://user-images.githubusercontent.com/48508827/136441564-56869f6b-d220-4114-b00b-1312957f3d5b.png">
+
+:point_right: Appium Inspector
+
    1) Start the Appium Server and connect with Real device/Emulator.
    2) Open Appium Inspector app and provide the appium server details and Desired Capabilities.
    
-   <img width="800" alt="Appium Inspector" src="https://user-images.githubusercontent.com/48508827/136668610-7507a27d-1304-490a-b954-687d3bf6caa2.png">
+   <img width="700" alt="Appium Inspector" src="https://user-images.githubusercontent.com/48508827/136668610-7507a27d-1304-490a-b954-687d3bf6caa2.png">
 
    3) Click on Start session which will start the appium inspector with layout shown below.
 
-   <img width="800" alt="Appium " src="https://user-images.githubusercontent.com/48508827/136668632-343aab0d-9eef-4a2d-beee-fa35825f361a.png">
+   <img width="700" alt="Appium " src="https://user-images.githubusercontent.com/48508827/136668632-343aab0d-9eef-4a2d-beee-fa35825f361a.png">
 
 ## :pushpin: Inspecting Element for mobile web browser
 ```
 Type url `chrome://inspect/#devices` in the desktop chrome browser and start inspecting element
 ```
 
-<img width="960" alt="Capture" src="https://user-images.githubusercontent.com/48508827/146682499-00cb158a-5f9b-4daf-87ba-ca197b2804de.PNG">
+<img width="800" alt="Capture" src="https://user-images.githubusercontent.com/48508827/146682499-00cb158a-5f9b-4daf-87ba-ca197b2804de.PNG">
 
 ## :pushpin: Launching Android Emulator Automatically
 Add below lines in the Desired capabilities
 ```
-capability.setCapability("avd", "Pixel_3a");
-capability.setCapability("avdLaunchTimeout", "180000");
+capability.setCapability(AndroidMobileCapabilityType.AVD, "Pixel_3a");
+capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, "180000");
 ```
 
 ## :pushpin: Auto Discovery of compatible ChromeDriver
@@ -118,7 +122,7 @@ builder.withArgument(GeneralServerFlag.ALLOW_INSECURE, "chromedriver_autodownloa
 
 ## :pushpin: Start Appium server programmatically
 Use `AppiumServiceBuilder` and `AppiumDriverLocalService` to start the server programmatically
-Set environment variable `APPIUM_HOME = C:\Users\Admin\AppData\Roaming\npm\node_modules\appium\build\lib` where `main.js` file is present
+Set environment variable `APPIUM_HOME = <path to npm folder>\node_modules\appium\build\lib` where `main.js` file is present
 
 ## :pushpin: Key Features
 :point_right: Supports Android and iOS Real Devices and Emulators.

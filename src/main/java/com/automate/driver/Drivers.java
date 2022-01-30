@@ -30,15 +30,14 @@ public final class Drivers {
             capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2); // Specific to Android
             capability.setCapability(MobileCapabilityType.UDID, udid); // To uniquely identify device
-            if (emulator.equalsIgnoreCase("yes")) {
-                capability.setCapability(AndroidMobileCapabilityType.AVD, device_name);
-                capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, Integer.parseInt(getConfig(ConfigJson.AVD_LAUNCH_TIMEOUT)));
-            }
             capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.getAndroidApkPath());
             capability.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getConfig(ConfigJson.APP_PACKAGE));
             capability.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getConfig(ConfigJson.APP_ACTIVITY));
             capability.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, port); // To set different port for each thread - This port is used to communicate with UiAutomator2
-
+            if (emulator.equalsIgnoreCase("yes")) {
+                capability.setCapability(AndroidMobileCapabilityType.AVD, device_name);
+                capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, Integer.parseInt(getConfig(ConfigJson.AVD_LAUNCH_TIMEOUT)));
+            }
             return new AndroidDriver<>(new URL(getConfig(ConfigJson.APPIUM_URL)), capability);
         } catch (Exception e) {
             throw new DriverInitializationException("Failed to initialize driver. Please check the desired capabilities", e);
@@ -51,14 +50,13 @@ public final class Drivers {
             capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
             capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
+            capability.setCapability(MobileCapabilityType.UDID, udid);
+            capability.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserName.CHROME);
+            capability.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_PORT, port); // For Web view/Chrome browser to launch the browser on different port
             if (emulator.equalsIgnoreCase("yes")) {
                 capability.setCapability(AndroidMobileCapabilityType.AVD, device_name);
                 capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, Integer.parseInt(getConfig(ConfigJson.AVD_LAUNCH_TIMEOUT)));
             }
-            capability.setCapability(MobileCapabilityType.UDID, udid);
-            capability.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_PORT, port); // For Web view/Chrome browser to launch the browser on different port
-            capability.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserName.CHROME);
-//            capability.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_EXECUTABLE, FrameworkConstants.getChromedriverExecutablesPath());
 
             return new AndroidDriver<>(new URL(getConfig(ConfigJson.APPIUM_URL)), capability);
         } catch (Exception e) {
@@ -90,8 +88,8 @@ public final class Drivers {
             capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             capability.setCapability(MobileCapabilityType.UDID, udid);
-            capability.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserName.SAFARI);
             capability.setCapability(IOSMobileCapabilityType.BUNDLE_ID, getConfig(ConfigJson.BUNDLE_ID));
+            capability.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserName.SAFARI);
             capability.setCapability("webkitDebugProxyPort", port); // For web view/Safari browser testing on real device
 
             return new IOSDriver<>(new URL(getConfig(ConfigJson.APPIUM_URL)), capability);
