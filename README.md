@@ -54,27 +54,27 @@ To check ios set up `appium-doctor --ios`
 1) Download [Vysor](https://www.vysor.io/)
 
 ## :pushpin: Start Android Emulator from Command line
-1) Open command prompt, go to <sdk emulator path>
+1) Open command prompt, go to `<sdk emulator path>`
 ```
 Command to stard AVD: `emulator -avd <avd_name>`
 Command to stop/kill AVD: `adb -e emu kill`
 ```
 
 ## :pushpin: Pushing the App (.apk file) to Android Emulator:
-1) Copy the .apk file and paste it in the path - <path to sdk platform-tools>
-2) Open the cmd terminal from the directory when APK file is placed and enter command `adb install <apk filename>`
+1) Copy the .apk file and paste it in the path - `<path to sdk platform-tools>`
+2) Open the cmd terminal from the directory where APK file is placed and enter command `adb install <apk filename>`
 
 ## :pushpin: Android - Finding appPackage and appActivity:
 If the app is already installed on your device then we can make use of appPackage and appActivity to launch the app
 
-Option 1:
+<b> Option 1 : </b>
 1) Open the app on the device, for which appPackage and appActivity is required.
 2) Open powershell and enter command `adb shell dumpsys window | grep -E 'mCurrentFocus|mFocusedApp'`
 NOTE: This command may not work for newer Android OS (10 or 11). In that case, use command:
    `adb shell "dumpsys activity activities | grep mResumedActivity"`
 
-Option 2:
-Install APK info app to retrieve appPackage and appActivity for the app installed in your device
+<b> Option 2 : </b>
+Install <b> APK info </b> app to retrieve appPackage and appActivity for the app installed in your device
 
 ## :pushpin: Inspecting Elements
 ### uiautomatorviewer
