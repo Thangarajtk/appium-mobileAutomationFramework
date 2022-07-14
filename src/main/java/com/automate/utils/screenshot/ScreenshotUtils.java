@@ -2,6 +2,8 @@ package com.automate.utils.screenshot;
 
 import com.automate.constants.FrameworkConstants;
 import com.automate.driver.DriverManager;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -9,9 +11,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ScreenshotUtils {
-
-    private ScreenshotUtils() {}
 
     // This class is to handle the change in third party library
     @SneakyThrows

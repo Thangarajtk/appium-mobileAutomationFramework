@@ -1,6 +1,6 @@
 package com.automate.listeners;
 
-import com.automate.customAnnotations.FrameworkAnnotation;
+import com.automate.customannotations.FrameworkAnnotation;
 import com.automate.reports.ExtentReportLogStatus;
 import com.automate.reports.ExtentReportManager;
 import org.testng.*;

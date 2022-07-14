@@ -4,6 +4,8 @@ import com.automate.constants.FrameworkConstants;
 import com.automate.entity.LoginData;
 import com.automate.entity.SearchData;
 import com.automate.entity.TestData;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
@@ -12,10 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DataProviderUtils {
-
-    private DataProviderUtils() {
-    }
 
     private static List<Map<String, String>> list = new ArrayList<>();
 

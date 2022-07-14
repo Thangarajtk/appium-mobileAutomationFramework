@@ -3,15 +3,15 @@ package com.automate.utils.screenrecording;
 import com.automate.constants.FrameworkConstants;
 import com.automate.driver.DriverManager;
 import io.appium.java_client.screenrecording.CanRecordScreen;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.commons.codec.binary.Base64;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ScreenRecordingUtils {
-
-    private ScreenRecordingUtils() {
-    }
 
     public static void startScreenRecording() {
         ((CanRecordScreen) DriverManager.getDriver()).startRecordingScreen();

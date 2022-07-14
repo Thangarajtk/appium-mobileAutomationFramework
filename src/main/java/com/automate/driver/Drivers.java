@@ -1,7 +1,7 @@
 package com.automate.driver;
 
 import com.automate.constants.FrameworkConstants;
-import com.automate.customExceptions.DriverInitializationException;
+import com.automate.customexceptions.DriverInitializationException;
 import com.automate.enums.ConfigJson;
 import com.automate.enums.MobileBrowserName;
 import io.appium.java_client.AppiumDriver;

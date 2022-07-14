@@ -4,15 +4,15 @@ import com.automate.constants.FrameworkConstants;
 import com.automate.driver.DriverManager;
 import com.automate.enums.WaitStrategy;
 import io.appium.java_client.MobileElement;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class WaitFactory {
-
-    private WaitFactory() {
-    }
 
     public static WebElement explicitlyWaitForElementLocatedBy(WaitStrategy waitStrategy, By by) {
         WebElement element = null;

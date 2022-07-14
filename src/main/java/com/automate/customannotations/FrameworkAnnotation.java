@@ -1,4 +1,4 @@
-package com.automate.customAnnotations;
+package com.automate.customannotations;
 
 import com.automate.enums.CategoryType;
 import java.lang.annotation.ElementType;
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface FrameworkAnnotation {
-    public String[] author();
-    public CategoryType[] category();
+    String[] author();
+    CategoryType[] category();
 }

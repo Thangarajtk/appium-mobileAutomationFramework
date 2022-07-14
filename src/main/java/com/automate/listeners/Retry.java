@@ -8,13 +8,13 @@ import org.testng.ITestResult;
 public class Retry implements IRetryAnalyzer {
 
     private int count = 0;
-    private int maxRetry = Integer.parseInt(PropertyUtils.getPropertyValue(ConfigProperties.RETRY_COUNT));
+    private final int maxRetry = Integer.parseInt(PropertyUtils.getPropertyValue(ConfigProperties.RETRY_COUNT));
 
     @Override
     public boolean retry(ITestResult result) {
         boolean value = false;
         if (PropertyUtils.getPropertyValue(ConfigProperties.RETRY_FAILED_TESTS).equalsIgnoreCase("yes")) {
-            value = count < maxRetry ? true : false;
+            value = count < maxRetry;
             count++;
         }
         return value;

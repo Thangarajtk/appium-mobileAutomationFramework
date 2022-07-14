@@ -1,8 +1,10 @@
 package com.automate.utils.screenshot;
 
-public final class ScreenshotService {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-    private ScreenshotService() {}
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class ScreenshotService {
 
     // Abstract layer to handle the change in business requirement
     public static String getScreenshotAsBase64() {

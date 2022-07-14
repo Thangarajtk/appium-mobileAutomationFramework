@@ -14,7 +14,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class AppiumServerUtils {
+public final class AppiumServerManager {
 
     private static AppiumDriverLocalService service;
 
@@ -31,7 +31,7 @@ public final class AppiumServerUtils {
 
     public static void startAppiumServer() {
         if (PropertyUtils.getPropertyValue(ConfigProperties.START_APPIUM_SERVER).equalsIgnoreCase("yes")) {
-            if (!AppiumServerUtils.checkIfServerIsRunning(FrameworkConstants.getAppiumServerPort())) {
+            if (!AppiumServerManager.checkIfServerIsRunning(FrameworkConstants.getAppiumServerPort())) {
                 //Build the Appium service
                 AppiumServiceBuilder builder = new AppiumServiceBuilder();
                 builder.usingDriverExecutable(new File(FrameworkConstants.getNodeJsPath()));

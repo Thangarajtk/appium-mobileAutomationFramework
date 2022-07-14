@@ -2,13 +2,11 @@ package com.automate.utils.configloader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
 import com.automate.constants.FrameworkConstants;
-import com.automate.customExceptions.PropertyFileUsageException;
+import com.automate.customexceptions.PropertyFileUsageException;
 import com.automate.enums.ConfigProperties;
 
 public final class PropertyUtils {

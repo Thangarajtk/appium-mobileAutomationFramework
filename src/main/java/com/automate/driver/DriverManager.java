@@ -2,15 +2,15 @@ package com.automate.driver;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DriverManager {
 
-    private DriverManager() {
-    }
-
-    private static ThreadLocal<AppiumDriver<MobileElement>> threadLocalDriver = new ThreadLocal<>();
+    private static final ThreadLocal<AppiumDriver<MobileElement>> threadLocalDriver = new ThreadLocal<>();
 
     public static AppiumDriver<MobileElement> getDriver() {
         return threadLocalDriver.get();

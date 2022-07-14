@@ -5,7 +5,7 @@ import com.automate.driver.DriverManager;
 import com.automate.driver.PlatformManager;
 import com.automate.enums.MobilePlatformName;
 import com.automate.factories.DriverFactory;
-import com.automate.utils.AppiumServerUtils;
+import com.automate.utils.AppiumServerManager;
 import com.automate.utils.screenrecording.ScreenRecordingService;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -18,7 +18,7 @@ public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     protected void beforeSuite() {
-        AppiumServerUtils.startAppiumServer();
+        AppiumServerManager.startAppiumServer();
     }
 
     @Parameters({"platformName", "udid", "deviceName", "systemPort", "chromeDriverPort", "emulator", "wdaLocalPort",
@@ -43,6 +43,6 @@ public class BaseTest {
 
     @AfterSuite(alwaysRun = true)
     protected void afterSuite() {
-        AppiumServerUtils.stopAppiumServer();
+        AppiumServerManager.stopAppiumServer();
     }
 }

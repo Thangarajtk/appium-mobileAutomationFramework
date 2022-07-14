@@ -1,6 +1,5 @@
 package com.automate.pages.screen;
 
-import com.automate.customExceptions.FrameworkException;
 import com.automate.driver.DriverManager;
 import com.automate.enums.MobileFindBy;
 import com.automate.enums.WaitStrategy;

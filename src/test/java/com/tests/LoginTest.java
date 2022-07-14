@@ -2,7 +2,7 @@ package com.tests;
 
 import base.BaseTest;
 import com.automate.constants.StringConstants;
-import com.automate.customAnnotations.FrameworkAnnotation;
+import com.automate.customannotations.FrameworkAnnotation;
 import com.automate.enums.CategoryType;
 import com.automate.pages.LoginPage;
 import com.automate.entity.TestData;

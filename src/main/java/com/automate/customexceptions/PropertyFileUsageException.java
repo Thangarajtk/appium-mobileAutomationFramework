@@ -1,4 +1,4 @@
-package com.automate.customExceptions;
+package com.automate.customexceptions;
 
 public class PropertyFileUsageException extends FrameworkException {
 

@@ -1,8 +1,8 @@
 package com.automate.utils.dataprovider;
 
 import com.automate.constants.FrameworkConstants;
-import com.automate.customExceptions.InvalidPathException;
-import com.automate.customExceptions.FrameworkException;
+import com.automate.customexceptions.InvalidPathException;
+import com.automate.customexceptions.FrameworkException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;

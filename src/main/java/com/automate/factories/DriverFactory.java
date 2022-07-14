@@ -1,16 +1,16 @@
 package com.automate.factories;
 
-import com.automate.customExceptions.DriverInitializationException;
+import com.automate.customexceptions.DriverInitializationException;
 import com.automate.driver.DriverManager;
 import com.automate.driver.Drivers;
 import com.automate.enums.MobilePlatformName;
 import io.appium.java_client.AppiumDriver;
-
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import java.util.Objects;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DriverFactory {
-
-    private DriverFactory() {}
 
     public static void initializeDriver(MobilePlatformName mobilePlatformName, String devicename, String udid, int port, String emulator) {
         AppiumDriver driver;

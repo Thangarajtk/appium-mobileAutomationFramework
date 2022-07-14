@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PlatformManager {
 
-    private static ThreadLocal<String> platformName = new ThreadLocal<>();
+    private static final ThreadLocal<String> platformName = new ThreadLocal<>();
 
     public static String getPlatformName() {
         return platformName.get();

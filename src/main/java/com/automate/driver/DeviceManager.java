@@ -1,11 +1,12 @@
 package com.automate.driver;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DeviceManager {
 
-    private DeviceManager() {
-    }
-
-    private static ThreadLocal<String> deviceName = new ThreadLocal<>();
+    private static final ThreadLocal<String> deviceName = new ThreadLocal<>();
 
     public static String getDeviceName() {
         return deviceName.get();

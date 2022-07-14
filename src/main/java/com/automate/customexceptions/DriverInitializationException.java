@@ -1,4 +1,4 @@
-package com.automate.customExceptions;
+package com.automate.customexceptions;
 
 public class DriverInitializationException extends FrameworkException{
     public DriverInitializationException(String message) {
