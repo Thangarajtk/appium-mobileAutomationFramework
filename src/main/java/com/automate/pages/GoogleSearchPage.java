@@ -4,7 +4,7 @@ import com.automate.pages.screen.ScreenActions;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoogleSearchPage extends ScreenActions {
+public final class GoogleSearchPage extends ScreenActions {
 
 	@FindBy(xpath="//input[@aria-label='Search']")
 	private static MobileElement txtFieldSearch;

@@ -1,7 +1,7 @@
-package com.automate.factories;
+package com.automate.driver.factory;
 
 import com.automate.customexceptions.DriverInitializationException;
-import com.automate.driver.DriverManager;
+import com.automate.driver.manager.DriverManager;
 import com.automate.driver.Drivers;
 import com.automate.enums.MobilePlatformName;
 import io.appium.java_client.AppiumDriver;

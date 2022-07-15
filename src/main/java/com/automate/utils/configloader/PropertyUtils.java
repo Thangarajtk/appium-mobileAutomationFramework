@@ -8,11 +8,11 @@ import java.util.Properties;
 import com.automate.constants.FrameworkConstants;
 import com.automate.customexceptions.PropertyFileUsageException;
 import com.automate.enums.ConfigProperties;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class PropertyUtils {
-
-    private PropertyUtils() {
-    }
 
     private static final Properties property = new Properties();
 

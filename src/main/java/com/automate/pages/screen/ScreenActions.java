@@ -1,6 +1,6 @@
 package com.automate.pages.screen;
 
-import com.automate.driver.DriverManager;
+import com.automate.driver.manager.DriverManager;
 import com.automate.enums.MobileFindBy;
 import com.automate.enums.WaitStrategy;
 import com.automate.factories.WaitFactory;

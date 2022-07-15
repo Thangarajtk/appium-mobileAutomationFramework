@@ -1,10 +1,10 @@
 package base;
 
-import com.automate.driver.DeviceManager;
-import com.automate.driver.DriverManager;
-import com.automate.driver.PlatformManager;
+import com.automate.driver.manager.DeviceManager;
+import com.automate.driver.manager.DriverManager;
+import com.automate.driver.manager.PlatformManager;
 import com.automate.enums.MobilePlatformName;
-import com.automate.factories.DriverFactory;
+import com.automate.driver.factory.DriverFactory;
 import com.automate.utils.AppiumServerManager;
 import com.automate.utils.screenrecording.ScreenRecordingService;
 import org.testng.ITestResult;

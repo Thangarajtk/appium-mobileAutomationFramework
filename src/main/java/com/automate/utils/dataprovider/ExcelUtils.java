@@ -3,6 +3,8 @@ package com.automate.utils.dataprovider;
 import com.automate.constants.FrameworkConstants;
 import com.automate.customexceptions.InvalidPathException;
 import com.automate.customexceptions.FrameworkException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
@@ -13,10 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ExcelUtils {
-
-    private ExcelUtils() {
-    }
 
     public static List<Map<String, String>> getTestDetails(String sheetName) {
         List<Map<String, String>> list;

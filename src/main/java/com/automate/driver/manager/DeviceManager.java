@@ -1,4 +1,4 @@
-package com.automate.driver;
+package com.automate.driver.manager;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.automate.driver;
+package com.automate.driver.manager;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

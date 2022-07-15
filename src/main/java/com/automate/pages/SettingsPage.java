@@ -5,7 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class SettingsPage extends ScreenActions {
+public final class SettingsPage extends ScreenActions {
 
     @AndroidFindBy(accessibility = "test-LOGOUT")
     private static MobileElement logOutButton;

@@ -7,6 +7,8 @@ import com.automate.enums.ConfigJson;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JsonUtils {
     private static Map<String, String> map;
-
-    private JsonUtils() {
-    }
 
     public static String getValue(String key) {
         try {

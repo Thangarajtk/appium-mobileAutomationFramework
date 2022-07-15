@@ -12,16 +12,16 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.URL;
 import static com.automate.utils.configloader.JsonUtils.getConfig;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Drivers {
-
-    private Drivers() {
-    }
 
     public static AppiumDriver<MobileElement> createAndroidDriverForNativeApp(String device_name, String udid, int port, String emulator) {
         try {

@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Objects;
 import com.automate.constants.FrameworkConstants;
-import com.automate.driver.DeviceManager;
-import com.automate.driver.PlatformManager;
+import com.automate.driver.manager.DeviceManager;
+import com.automate.driver.manager.PlatformManager;
 import com.automate.enums.CategoryType;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public final class ExtentReportManager {
 
     private static ExtentReports extentReports;
-    private static ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(FrameworkConstants.getExtentReportPath());
+    private static final ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(FrameworkConstants.getExtentReportPath());
     private static final ThreadLocal<ExtentTest> threadLocalExtentTest = new ThreadLocal<>();
 
     private static InetAddress ip;

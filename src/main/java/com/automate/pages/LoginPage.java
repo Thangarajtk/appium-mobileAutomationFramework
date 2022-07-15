@@ -8,7 +8,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 
-public class LoginPage extends ScreenActions {
+public final class LoginPage extends ScreenActions {
 
     @AndroidFindBy(accessibility = "test-Username")
     @iOSXCUITFindBy(accessibility = "test-Username")

@@ -3,7 +3,7 @@ package com.tests;
 import base.BaseTest;
 import com.automate.constants.StringConstants;
 import com.automate.customannotations.FrameworkAnnotation;
-import com.automate.driver.DriverManager;
+import com.automate.driver.manager.DriverManager;
 import com.automate.entity.TestData;
 import com.automate.enums.CategoryType;
 import com.automate.enums.ConfigJson;

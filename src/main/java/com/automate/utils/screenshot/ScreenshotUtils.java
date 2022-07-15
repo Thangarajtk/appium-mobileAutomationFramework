@@ -1,7 +1,7 @@
 package com.automate.utils.screenshot;
 
 import com.automate.constants.FrameworkConstants;
-import com.automate.driver.DriverManager;
+import com.automate.driver.manager.DriverManager;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
