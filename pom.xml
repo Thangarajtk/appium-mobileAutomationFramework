@@ -8,16 +8,16 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<testng-version>7.5</testng-version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<testng-version>7.6.1</testng-version>
 		<appium-java-client-version>7.6.0</appium-java-client-version>
-		<apache-poi>5.0.0</apache-poi>
-		<json-path-version>2.6.0</json-path-version>
-		<log4j>2.17.1</log4j>
+		<apache-poi>5.2.2</apache-poi>
+		<json-path-version>2.7.0</json-path-version>
+		<log4j>2.18.0</log4j>
 		<extent-reports>5.0.9</extent-reports>
-		<jackson-version>2.13.1</jackson-version>
-		<lombok>1.18.22</lombok>
+		<jackson-version>2.13.3</jackson-version>
+		<lombok>1.18.24</lombok>
 	</properties>
 
 	<dependencies>
@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>20030203.000550</version>
+			<version>2.11.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20211205</version>
+			<version>20220320</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
