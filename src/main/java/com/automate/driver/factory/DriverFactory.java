@@ -5,6 +5,7 @@ import com.automate.driver.manager.DriverManager;
 import com.automate.driver.Drivers;
 import com.automate.enums.MobilePlatformName;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public final class DriverFactory {
 
     public static void initializeDriver(MobilePlatformName mobilePlatformName, String devicename, String udid, int port, String emulator) {
-        AppiumDriver driver;
+        AppiumDriver<MobileElement> driver;
         switch (mobilePlatformName) {
             case ANDROID:
                 driver = Drivers.createAndroidDriverForNativeApp(devicename, udid, port, emulator);

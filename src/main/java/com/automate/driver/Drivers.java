@@ -23,11 +23,11 @@ import static com.automate.utils.configloader.JsonUtils.getConfig;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Drivers {
 
-    public static AppiumDriver<MobileElement> createAndroidDriverForNativeApp(String device_name, String udid, int port, String emulator) {
+    public static AppiumDriver<MobileElement> createAndroidDriverForNativeApp(String deviceName, String udid, int port, String emulator) {
         try {
             DesiredCapabilities capability = new DesiredCapabilities();
-            capability.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
-            capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
+            capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
+            capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2); // Specific to Android
             capability.setCapability(MobileCapabilityType.UDID, udid); // To uniquely identify device
             capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.getAndroidApkPath());
@@ -35,7 +35,7 @@ public final class Drivers {
             capability.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getConfig(ConfigJson.APP_ACTIVITY));
             capability.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, port); // To set different port for each thread - This port is used to communicate with UiAutomator2
             if (emulator.equalsIgnoreCase("yes")) {
-                capability.setCapability(AndroidMobileCapabilityType.AVD, device_name);
+                capability.setCapability(AndroidMobileCapabilityType.AVD, deviceName);
                 capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, Integer.parseInt(getConfig(ConfigJson.AVD_LAUNCH_TIMEOUT)));
             }
             return new AndroidDriver<>(new URL(getConfig(ConfigJson.APPIUM_URL)), capability);
@@ -44,17 +44,17 @@ public final class Drivers {
         }
     }
 
-    public static AppiumDriver<MobileElement> createAndroidDriverForWeb(String device_name, String udid, int port, String emulator) {
+    public static AppiumDriver<MobileElement> createAndroidDriverForWeb(String deviceName, String udid, int port, String emulator) {
         try {
             DesiredCapabilities capability = new DesiredCapabilities();
             capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
-            capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
+            capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
             capability.setCapability(MobileCapabilityType.UDID, udid);
             capability.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserName.CHROME);
             capability.setCapability(AndroidMobileCapabilityType.CHROMEDRIVER_PORT, port); // For Web view/Chrome browser to launch the browser on different port
             if (emulator.equalsIgnoreCase("yes")) {
-                capability.setCapability(AndroidMobileCapabilityType.AVD, device_name);
+                capability.setCapability(AndroidMobileCapabilityType.AVD, deviceName);
                 capability.setCapability(AndroidMobileCapabilityType.AVD_LAUNCH_TIMEOUT, Integer.parseInt(getConfig(ConfigJson.AVD_LAUNCH_TIMEOUT)));
             }
 
@@ -64,11 +64,11 @@ public final class Drivers {
         }
     }
 
-    public static AppiumDriver<MobileElement> createIOSDriverForNativeApp(String device_name, String udid, int port) {
+    public static AppiumDriver<MobileElement> createIOSDriverForNativeApp(String deviceName, String udid, int port) {
         try {
             DesiredCapabilities capability = new DesiredCapabilities();
             capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.IOS);
-            capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
+            capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             capability.setCapability(MobileCapabilityType.UDID, udid);
             capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.getIosAppPath());
@@ -81,11 +81,11 @@ public final class Drivers {
         }
     }
 
-    public static AppiumDriver<MobileElement> createIOSDriverForWeb(String device_name, String udid, int port) {
+    public static AppiumDriver<MobileElement> createIOSDriverForWeb(String deviceName, String udid, int port) {
         try {
             DesiredCapabilities capability = new DesiredCapabilities();
             capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.IOS);
-            capability.setCapability(MobileCapabilityType.DEVICE_NAME, device_name);
+            capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
             capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
             capability.setCapability(MobileCapabilityType.UDID, udid);
             capability.setCapability(IOSMobileCapabilityType.BUNDLE_ID, getConfig(ConfigJson.BUNDLE_ID));

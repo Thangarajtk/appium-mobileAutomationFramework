@@ -18,6 +18,7 @@ import java.util.Objects;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JsonUtils {
+
     private static Map<String, String> map;
 
     public static String getValue(String key) {

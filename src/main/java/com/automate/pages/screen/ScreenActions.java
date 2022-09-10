@@ -233,7 +233,8 @@ public class ScreenActions {
      * Swipe Down
      */
     public void swipeDown() {
-        DriverManager.getDriver().executeScript("mobile:scroll", ImmutableMap.of("direction", "down"));
+        DriverManager.getDriver().executeScript("mobile:scroll",
+                ImmutableMap.of("direction", "down"));
         ExtentReportLogStatus.logInfo("Swipe Down");
     }
 
@@ -268,7 +269,7 @@ public class ScreenActions {
      */
     public void longPress(MobileElement element) {
         try {
-            new TouchAction(DriverManager.getDriver())
+            new TouchAction<>(DriverManager.getDriver())
                     .longPress(ElementOption.element(element))
                     .perform();
         } catch (Exception e) {
@@ -279,10 +280,8 @@ public class ScreenActions {
     /**
      * Scroll to specific location
      *
-     * @param element element
-     * @param value   location
      */
-    public void scrollToLocation(MobileElement element, int value) {
+    public void scrollToLocation() {
         try {
             HashMap<String, Double> scrollElement = new HashMap<>();
             scrollElement.put("startX", 0.50);

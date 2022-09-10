@@ -48,11 +48,11 @@ public class Listeners implements ITestListener, ISuiteListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
+        // No implementation
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
+        // No implementation
     }
 }
