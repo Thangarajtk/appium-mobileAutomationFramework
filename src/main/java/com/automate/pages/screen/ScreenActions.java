@@ -3,7 +3,6 @@ package com.automate.pages.screen;
 import com.automate.driver.manager.DriverManager;
 import com.automate.enums.MobileFindBy;
 import com.automate.enums.WaitStrategy;
-import com.automate.factories.WaitFactory;
 import com.automate.reports.ExtentReportLogStatus;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Ordering;
@@ -27,6 +26,8 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static com.automate.factories.WaitFactory.explicitlyWaitForElement;
 
 public class ScreenActions {
 
@@ -53,11 +54,10 @@ public class ScreenActions {
     }
 
     protected MobileElement getDynamicMobileElement(String mobileElement, MobileFindBy mobileFindBy) {
-        switch (mobileFindBy) {
-            case XPATH:
-                return DriverManager.getDriver().findElement(By.xpath(mobileElement));
-            case CSS:
-                return DriverManager.getDriver().findElement(By.cssSelector(mobileElement));
+        if (mobileFindBy == MobileFindBy.XPATH) {
+            return DriverManager.getDriver().findElement(By.xpath(mobileElement));
+        } else if (mobileFindBy == MobileFindBy.CSS) {
+            return DriverManager.getDriver().findElement(By.cssSelector(mobileElement));
         }
         return null;
     }
@@ -67,11 +67,11 @@ public class ScreenActions {
     }
 
     protected String getTextFromAttribute(WaitStrategy waitStrategy, MobileElement element) {
-        return WaitFactory.explicitlyWaitForElement(waitStrategy, element).getAttribute("text");
+        return explicitlyWaitForElement(waitStrategy, element).getAttribute("text");
     }
 
     protected String getText(MobileElement element, WaitStrategy waitStrategy) {
-        return WaitFactory.explicitlyWaitForElement(waitStrategy, element).getText();
+        return explicitlyWaitForElement(waitStrategy, element).getText();
     }
 
     protected boolean isElementDisplayed(MobileElement element) {
@@ -188,7 +188,7 @@ public class ScreenActions {
 
     protected void enter(MobileElement element, String value, String elementName) {
         try {
-            WaitFactory.explicitlyWaitForElement(WaitStrategy.VISIBLE, element);
+            explicitlyWaitForElement(WaitStrategy.VISIBLE, element);
             doClear(element);
             element.sendKeys(value);
             ExtentReportLogStatus.logInfo("Entered value - <b>" + value + "</b> in the field " + elementName);

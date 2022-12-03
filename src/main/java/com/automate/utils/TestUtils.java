@@ -1,5 +1,7 @@
 package com.automate.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -16,7 +18,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class TestUtils {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class TestUtils {
 
     public static void deleteFolder(File file) {
         File[] contents = file.listFiles();
@@ -28,7 +31,7 @@ public class TestUtils {
         file.delete();
     }
 
-    public HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
+    public static HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
         HashMap<String, String> hmap = new HashMap<>();
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
