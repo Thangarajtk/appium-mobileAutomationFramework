@@ -9,12 +9,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -22,17 +24,13 @@ import java.util.Objects;
 public final class TestUtils {
 
     public static void deleteFolder(File file) {
-        File[] contents = file.listFiles();
-        if (Objects.nonNull(contents)) {
-            for (File f : contents) {
-                deleteFolder(f);
-            }
-        }
-        file.delete();
+        File[] files = file.listFiles();
+        if (Objects.nonNull(files))
+            Arrays.asList(files).forEach(content -> file.delete());
     }
 
     public static HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
-        HashMap<String, String> hmap = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = docFactory.newDocumentBuilder();
@@ -47,10 +45,10 @@ public final class TestUtils {
             Node node = nList.item(temp);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
-                hmap.put(element.getAttribute("name"), element.getTextContent());
+                map.put(element.getAttribute("name"), element.getTextContent());
             }
         }
-        return hmap;
+        return map;
     }
 
     public static Logger log() {
