@@ -18,14 +18,14 @@ import static com.automate.utils.configloader.JsonUtils.getConfig;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class GoogleTest extends BaseTest {
 
-    @FrameworkAnnotation(author = "User-1", category = {CategoryType.REGRESSION, CategoryType.SANITY, CategoryType.SMOKE})
-    @Test(description = "Google search")
-    public void googleSearch(TestData data) {
-        DriverManager.getDriver().get(getConfig(ConfigJson.URL));
-        String searchResultsPageTitle = new GoogleSearchPage()
-                .performSearch(data.getSearchData().getSearchText())
-                .getSearchResultsPageTitle();
+  @FrameworkAnnotation(author = "User-1", category = {CategoryType.REGRESSION, CategoryType.SANITY, CategoryType.SMOKE})
+  @Test(description = "Google search")
+  public void googleSearch(TestData data) {
+    DriverManager.getDriver().get(getConfig(ConfigJson.URL));
+    String searchResultsPageTitle = new GoogleSearchPage()
+      .performSearch(data.getSearchData().getSearchText())
+      .getSearchResultsPageTitle();
 
-        Assert.assertEquals(searchResultsPageTitle, StringConstants.SEARCH_RESULTS_PAGE_TITLE);
-    }
+    Assert.assertEquals(searchResultsPageTitle, StringConstants.SEARCH_RESULTS_PAGE_TITLE);
+  }
 }

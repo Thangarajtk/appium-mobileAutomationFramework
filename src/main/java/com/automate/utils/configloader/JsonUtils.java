@@ -19,31 +19,30 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JsonUtils {
 
-    private static Map<String, String> map;
+  private static Map<String, String> map;
 
-    public static String getValue(String key) {
-        try {
-            return JsonPath.read(new File(FrameworkConstants.getConfigJsonPath()), key);
-        } catch (IOException e) {
-            throw new InvalidPathException("Check the config.json");
-        }
+  public static String getValue(String key) {
+    try {
+      return JsonPath.read(new File(FrameworkConstants.getConfigJsonPath()), key);
+    } catch (IOException e) {
+      throw new InvalidPathException("Check the config.json");
     }
+  }
 
-    static void readJson(String jsonPath) {
-        try {
-            map = new ObjectMapper().readValue(new File(jsonPath),
-                    new TypeReference<HashMap<String, String>>() {
-                    });
-        } catch (IOException e) {
-            throw new JsonFileUsageException("IOException occurred while reading Json file in the specified path");
-        }
+  static void readJson(String jsonPath) {
+    try {
+      map = new ObjectMapper().readValue(new File(jsonPath),
+                                         new TypeReference<HashMap<String, String>>() {});
+    } catch (IOException e) {
+      throw new JsonFileUsageException("IOException occurred while reading Json file in the specified path");
     }
+  }
 
-    public static String getConfig(ConfigJson key) {
-        readJson(FrameworkConstants.getConfigJsonPath());
-        if (Objects.isNull(map.get(key.name().toLowerCase()))) {
-            throw new JsonFileUsageException("Property name - " + key + " is not found. Please check the config.json");
-        }
-        return map.get(key.name().toLowerCase());
+  public static String getConfig(ConfigJson key) {
+    readJson(FrameworkConstants.getConfigJsonPath());
+    if (Objects.isNull(map.get(key.name().toLowerCase()))) {
+      throw new JsonFileUsageException("Property name - " + key + " is not found. Please check the config.json");
     }
+    return map.get(key.name().toLowerCase());
+  }
 }

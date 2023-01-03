@@ -23,35 +23,35 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class TestUtils {
 
-    public static void deleteFolder(File file) {
-        File[] files = file.listFiles();
-        if (Objects.nonNull(files))
-            Arrays.asList(files).forEach(content -> file.delete());
+  public static void deleteFolder(File file) {
+    File[] files = file.listFiles();
+    if (Objects.nonNull(files))
+      Arrays.asList(files).forEach(content -> file.delete());
+  }
+
+  public static HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
+    HashMap<String, String> map = new HashMap<>();
+
+    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = docFactory.newDocumentBuilder();
+
+    Document document = builder.parse(in);
+    document.getDocumentElement().normalize();
+
+    Element root = document.getDocumentElement();
+    NodeList nList = document.getElementsByTagName("string");
+
+    for (int temp = 0; temp < nList.getLength(); temp++) {
+      Node node = nList.item(temp);
+      if (node.getNodeType() == Node.ELEMENT_NODE) {
+        Element element = (Element) node;
+        map.put(element.getAttribute("name"), element.getTextContent());
+      }
     }
+    return map;
+  }
 
-    public static HashMap<String, String> parseStringXML(InputStream in) throws IOException, SAXException, ParserConfigurationException {
-        HashMap<String, String> map = new HashMap<>();
-
-        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = docFactory.newDocumentBuilder();
-
-        Document document = builder.parse(in);
-        document.getDocumentElement().normalize();
-
-        Element root = document.getDocumentElement();
-        NodeList nList = document.getElementsByTagName("string");
-
-        for (int temp = 0; temp < nList.getLength(); temp++) {
-            Node node = nList.item(temp);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element element = (Element) node;
-                map.put(element.getAttribute("name"), element.getTextContent());
-            }
-        }
-        return map;
-    }
-
-    public static Logger log() {
-        return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
-    }
+  public static Logger log() {
+    return LogManager.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
+  }
 }

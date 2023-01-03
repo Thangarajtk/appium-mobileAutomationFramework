@@ -239,7 +239,7 @@ public class ScreenActions {
    */
   public void swipeDown() {
     DriverManager.getDriver().executeScript("mobile:scroll",
-      ImmutableMap.of("direction", "down"));
+                                            ImmutableMap.of("direction", "down"));
     ExtentReportLogStatus.logInfo("Swipe Down");
   }
 

@@ -7,6 +7,6 @@ import lombok.Getter;
 @Builder(setterPrefix = "set")
 public class LoginData {
 
-    private String loginUsername;
-    private String loginPassword;
+  private String loginUsername;
+  private String loginPassword;
 }

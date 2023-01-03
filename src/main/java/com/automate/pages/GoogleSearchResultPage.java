@@ -5,8 +5,8 @@ import com.automate.pages.screen.ScreenActions;
 
 public final class GoogleSearchResultPage extends ScreenActions {
 
-	public String getSearchResultsPageTitle() {
-		return DriverManager.getDriver().getTitle();
-	}
+  public String getSearchResultsPageTitle() {
+    return DriverManager.getDriver().getTitle();
+  }
 
 }

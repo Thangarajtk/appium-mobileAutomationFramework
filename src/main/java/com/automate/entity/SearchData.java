@@ -7,5 +7,5 @@ import lombok.Getter;
 @Builder(setterPrefix = "set")
 public class SearchData {
 
-    private String searchText;
+  private String searchText;
 }

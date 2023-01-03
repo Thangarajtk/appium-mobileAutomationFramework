@@ -13,7 +13,7 @@
         <parameter name="systemPort" value="7878"/>
         <classes>
             <class name="com.tests.LoginTest"/>
-<!--            <class name="com.tests.ProductsTest"/>-->
+            <!--            <class name="com.tests.ProductsTest"/>-->
         </classes>
     </test> <!-- Test -->
 
