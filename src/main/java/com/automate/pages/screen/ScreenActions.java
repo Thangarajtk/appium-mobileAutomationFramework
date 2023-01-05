@@ -3,10 +3,9 @@ package com.automate.pages.screen;
 import com.automate.driver.manager.DriverManager;
 import com.automate.enums.MobileFindBy;
 import com.automate.enums.WaitStrategy;
-import com.automate.reports.ExtentReportLogStatus;
+import com.automate.reports.ExtentReportLogger;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Ordering;
-import io.appium.java_client.InteractsWithApps;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
@@ -27,38 +26,53 @@ import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
+import static com.automate.enums.MobileFindBy.ACCESSIBILITY_ID;
+import static com.automate.enums.MobileFindBy.CLASS;
+import static com.automate.enums.MobileFindBy.CSS;
+import static com.automate.enums.MobileFindBy.ID;
+import static com.automate.enums.MobileFindBy.NAME;
+import static com.automate.enums.MobileFindBy.XPATH;
 import static com.automate.factories.WaitFactory.explicitlyWaitForElement;
 
 public class ScreenActions {
 
+  private final Map<MobileFindBy, Function<String, MobileElement>> mobileFindByFunctionMap = new EnumMap<>(MobileFindBy.class);
+  private final Function<String, MobileElement> findByXpath =
+    mobileElement -> DriverManager.getDriver().findElementByXPath(mobileElement);
+  private final Function<String, MobileElement> findByCss =
+    mobileElement -> DriverManager.getDriver().findElementByCssSelector(mobileElement);
+  private final Function<String, MobileElement> findById = mobileElement -> DriverManager.getDriver().findElementById(mobileElement);
+  private final Function<String, MobileElement> findByName =
+    mobileElement -> DriverManager.getDriver().findElementByName(mobileElement);
+  private final Function<String, MobileElement> findByAccessibilityId =
+    mobileElement -> DriverManager.getDriver().findElementByAccessibilityId(mobileElement);
+  private final Function<String, MobileElement> findByClassName =
+    mobileElement -> DriverManager.getDriver().findElementByClassName(mobileElement);
   protected ScreenActions() {
     PageFactory.initElements(new AppiumFieldDecorator(DriverManager.getDriver()), this);
   }
 
   private MobileElement getMobileElement(String mobileElement, MobileFindBy mobileFindBy) {
-    switch (mobileFindBy) {
-      case XPATH:
-        return DriverManager.getDriver().findElementByXPath(mobileElement);
-      case CSS:
-        return DriverManager.getDriver().findElementByCssSelector(mobileElement);
-      case ID:
-        return DriverManager.getDriver().findElementById(mobileElement);
-      case NAME:
-        return DriverManager.getDriver().findElementByName(mobileElement);
-      case ACCESSIBILITY_ID:
-        return DriverManager.getDriver().findElementByAccessibilityId(mobileElement);
-      case CLASS:
-        return DriverManager.getDriver().findElementByClassName(mobileElement);
+    if (mobileFindByFunctionMap.isEmpty()) {
+      mobileFindByFunctionMap.put(XPATH, findByXpath);
+      mobileFindByFunctionMap.put(CSS, findByCss);
+      mobileFindByFunctionMap.put(ID, findById);
+      mobileFindByFunctionMap.put(NAME, findByName);
+      mobileFindByFunctionMap.put(ACCESSIBILITY_ID, findByAccessibilityId);
+      mobileFindByFunctionMap.put(CLASS, findByClassName);
     }
-    return null;
+    return mobileFindByFunctionMap.get(mobileFindBy).apply(mobileElement);
   }
 
   protected MobileElement getDynamicMobileElement(String mobileElement, MobileFindBy mobileFindBy) {
-    if (mobileFindBy == MobileFindBy.XPATH) {
+    if (mobileFindBy == XPATH) {
       return DriverManager.getDriver().findElement(By.xpath(mobileElement));
     } else if (mobileFindBy == MobileFindBy.CSS) {
       return DriverManager.getDriver().findElement(By.cssSelector(mobileElement));
@@ -94,11 +108,11 @@ public class ScreenActions {
     switch (screenOrientationType) {
       case LANDSCAPE:
         DriverManager.getDriver().rotate(ScreenOrientation.LANDSCAPE);
-        ExtentReportLogStatus.logInfo("Device Orientation is set to Landscape");
+        ExtentReportLogger.logInfo("Device Orientation is set to Landscape");
         break;
       case PORTRAIT:
         DriverManager.getDriver().rotate(ScreenOrientation.PORTRAIT);
-        ExtentReportLogStatus.logInfo("Device Orientation is set to Portrait");
+        ExtentReportLogger.logInfo("Device Orientation is set to Portrait");
         break;
       default:
         throw new IllegalStateException("Unexpected value in Screen Orientation: " + screenOrientationType);
@@ -129,7 +143,7 @@ public class ScreenActions {
     new Actions(DriverManager.getDriver())
       .moveToElement(element, xoffset, yoffset)
       .perform();
-    ExtentReportLogStatus.logInfo("Move to target element :" + element);
+    ExtentReportLogger.logInfo("Move to target element :" + element);
   }
 
   protected void doubleClickOnElement(WebElement element) {
@@ -137,28 +151,28 @@ public class ScreenActions {
       .moveToElement(element)
       .doubleClick()
       .perform();
-    ExtentReportLogStatus.logInfo("Double click on element : " + element);
+    ExtentReportLogger.logInfo("Double click on element : " + element);
   }
 
   protected void performSingleTap(WebElement element) {
     new TouchActions(DriverManager.getDriver())
       .singleTap(element)
       .perform();
-    ExtentReportLogStatus.logInfo("Single tap on element : " + element);
+    ExtentReportLogger.logInfo("Single tap on element : " + element);
   }
 
   protected void performDoubleTap(WebElement element) {
     new TouchActions(DriverManager.getDriver())
       .doubleTap(element)
       .perform();
-    ExtentReportLogStatus.logInfo("Double tap on element : " + element);
+    ExtentReportLogger.logInfo("Double tap on element : " + element);
   }
 
   protected void performLongTap(WebElement element) {
     new TouchActions(DriverManager.getDriver())
       .longPress(element)
       .perform();
-    ExtentReportLogStatus.logInfo("Long press on element : " + element);
+    ExtentReportLogger.logInfo("Long press on element : " + element);
   }
 
   protected void touchScreenScroll(WebElement element, int x, int y) {
@@ -181,9 +195,9 @@ public class ScreenActions {
   protected void click(MobileElement element, String elementName) {
     try {
       element.click();
-      ExtentReportLogStatus.logInfo("Clicked on " + elementName);
+      ExtentReportLogger.logInfo("Clicked on " + elementName);
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception occurred when clicking on - " + elementName, e);
+      ExtentReportLogger.logFail("Exception occurred when clicking on - " + elementName, e);
     }
   }
 
@@ -196,9 +210,9 @@ public class ScreenActions {
       explicitlyWaitForElement(WaitStrategy.VISIBLE, element);
       doClear(element);
       element.sendKeys(value);
-      ExtentReportLogStatus.logInfo("Entered value - <b>" + value + "</b> in the field " + elementName);
+      ExtentReportLogger.logInfo("Entered value - <b>" + value + "</b> in the field " + elementName);
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception occurred while entering value in the field - " + elementName, e);
+      ExtentReportLogger.logFail("Exception occurred while entering value in the field - " + elementName, e);
     }
   }
 
@@ -206,9 +220,9 @@ public class ScreenActions {
     try {
       doClear(element);
       element.sendKeys(value, Keys.ENTER);
-      ExtentReportLogStatus.logInfo("Entered value - <b>" + value + "</b> in the field " + elementName + " and pressed enter");
+      ExtentReportLogger.logInfo("Entered value - <b>" + value + "</b> in the field " + elementName + " and pressed enter");
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception caught while entering value", e);
+      ExtentReportLogger.logFail("Exception caught while entering value", e);
     }
   }
 
@@ -229,7 +243,7 @@ public class ScreenActions {
         ((AndroidDriver<MobileElement>) DriverManager.getDriver()).setPowerAC(PowerACState.OFF);
         break;
       default:
-        ExtentReportLogStatus.warning("Voice state not available");
+        ExtentReportLogger.warning("Voice state not available");
         break;
     }
   }
@@ -240,7 +254,7 @@ public class ScreenActions {
   public void swipeDown() {
     DriverManager.getDriver().executeScript("mobile:scroll",
                                             ImmutableMap.of("direction", "down"));
-    ExtentReportLogStatus.logInfo("Swipe Down");
+    ExtentReportLogger.logInfo("Swipe Down");
   }
 
   /**
@@ -248,7 +262,7 @@ public class ScreenActions {
    */
   public void swipeUP() {
     DriverManager.getDriver().executeScript("mobile:scroll", ImmutableMap.of("direction", "up"));
-    ExtentReportLogStatus.logInfo("Swipe Up");
+    ExtentReportLogger.logInfo("Swipe Up");
   }
 
   /**
@@ -256,7 +270,7 @@ public class ScreenActions {
    */
   public void acceptAlert() {
     DriverManager.getDriver().executeScript("mobile:acceptAlert");
-    ExtentReportLogStatus.logInfo("Accept Alert");
+    ExtentReportLogger.logInfo("Accept Alert");
   }
 
   /**
@@ -264,7 +278,7 @@ public class ScreenActions {
    */
   public void dismissAlert() {
     DriverManager.getDriver().executeScript("mobile:dismissAlert");
-    ExtentReportLogStatus.logInfo("Dismiss Alert");
+    ExtentReportLogger.logInfo("Dismiss Alert");
   }
 
   /**
@@ -278,7 +292,7 @@ public class ScreenActions {
         .longPress(ElementOption.element(element))
         .perform();
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception caught while performing long press on the Mobile Element", e);
+      ExtentReportLogger.logFail("Exception caught while performing long press on the Mobile Element", e);
     }
   }
 
@@ -295,7 +309,7 @@ public class ScreenActions {
       scrollElement.put("duration", 3.0);
       DriverManager.getDriver().executeScript("mobile: swipe", scrollElement);
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception caught when scrolling to specific location", e);
+      ExtentReportLogger.logFail("Exception caught when scrolling to specific location", e);
     }
   }
 
@@ -303,17 +317,17 @@ public class ScreenActions {
     if (!listToSort.isEmpty()) {
       try {
         if (Ordering.natural().isOrdered(listToSort)) {
-          ExtentReportLogStatus.logPass("List is sorted");
+          ExtentReportLogger.logPass("List is sorted");
           return true;
         } else {
-          ExtentReportLogStatus.logInfo("List is not sorted");
+          ExtentReportLogger.logInfo("List is not sorted");
           return false;
         }
       } catch (Exception e) {
-        ExtentReportLogStatus.logFail("Exception caught when checking if list is sorted", e);
+        ExtentReportLogger.logFail("Exception caught when checking if list is sorted", e);
       }
     } else {
-      ExtentReportLogStatus.warning("List is empty");
+      ExtentReportLogger.warning("List is empty");
     }
     return false;
   }
@@ -548,19 +562,19 @@ public class ScreenActions {
           }
           break;
         default:
-          ExtentReportLogStatus.logInfo("Direction not found");
+          ExtentReportLogger.logInfo("Direction not found");
           break;
       }
     } catch (Exception e) {
-      ExtentReportLogStatus.logFail("Exception caught while performing Swipe", e);
+      ExtentReportLogger.logFail("Exception caught while performing Swipe", e);
     }
   }
 
   protected void closeApp() {
-    ((InteractsWithApps) DriverManager.getDriver()).closeApp();
+    DriverManager.getDriver().closeApp();
   }
 
   protected void launchApp() {
-    ((InteractsWithApps) DriverManager.getDriver()).launchApp();
+    DriverManager.getDriver().launchApp();
   }
 }

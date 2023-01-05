@@ -23,7 +23,7 @@ public final class JsonUtils {
 
   public static String getValue(String key) {
     try {
-      return JsonPath.read(new File(FrameworkConstants.getConfigJsonPath()), key);
+      return JsonPath.read(new File(FrameworkConstants.CONFIG_JSON_PATH), key);
     } catch (IOException e) {
       throw new InvalidPathException("Check the config.json");
     }
@@ -32,14 +32,15 @@ public final class JsonUtils {
   static void readJson(String jsonPath) {
     try {
       map = new ObjectMapper().readValue(new File(jsonPath),
-                                         new TypeReference<HashMap<String, String>>() {});
+                                         new TypeReference<HashMap<String, String>>() {
+                                         });
     } catch (IOException e) {
       throw new JsonFileUsageException("IOException occurred while reading Json file in the specified path");
     }
   }
 
   public static String getConfig(ConfigJson key) {
-    readJson(FrameworkConstants.getConfigJsonPath());
+    readJson(FrameworkConstants.CONFIG_JSON_PATH);
     if (Objects.isNull(map.get(key.name().toLowerCase()))) {
       throw new JsonFileUsageException("Property name - " + key + " is not found. Please check the config.json");
     }

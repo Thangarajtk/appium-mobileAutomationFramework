@@ -3,7 +3,6 @@ package com.automate.constants;
 import com.automate.enums.ConfigProperties;
 import com.automate.utils.configloader.PropertyUtils;
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
@@ -14,68 +13,54 @@ import java.time.format.DateTimeFormatter;
 public final class FrameworkConstants {
 
   public static final String PROJECT_PATH = System.getProperty("user.dir");
-
-  @Getter
-  private static final String appiumServerHost = "127.0.0.1";
-  @Getter
-  private static final int appiumServerPort = 4723;
-  @Getter
-  private static final String appiumJsPath = System.getenv("APPIUM_HOME") + File.separator + "main.js";
-  @Getter
-  private static final String androidApkPath =
-    PROJECT_PATH + File.separator + "src/test/resources" + File.separator + "app" + File.separator +
+  public static final String TEST_RESOURCES_DIR = PROJECT_PATH + File.separator + "src/test/resources";
+  public static final String ANDROID_APK_PATH =
+    TEST_RESOURCES_DIR + File.separator + "app" + File.separator +
       "Android.SauceLabs.Mobile.Sample.app.2.7.1.apk";
-  @Getter
-  private static final String credentialsJsonFile = "data/credentials.json";
-  @Getter
-  private static final String chromedriverExecutablesPath =
-    PROJECT_PATH + File.separator + "src/test/resources" + File.separator + "executables" + File.separator + "chromedriver.exe";
-  @Getter
-  private static final String configPropertiesPath =
-    PROJECT_PATH + File.separator + "src/test/resources" + File.separator + "config" + File.separator + "config.properties";
-  @Getter
-  private static final String configJsonPath =
-    PROJECT_PATH + File.separator + "src/test/resources" + File.separator + "config" + File.separator + "config.json";
-  @Getter
-  private static final long explicitWait = 15;
-  @Getter
-  private static final String testDataSheet = "TEST_DATA";
-  @Getter
-  private static final String iosAppPath = "";
-  @Getter
-  private static final String screenshotPath = PROJECT_PATH + File.separator + "screenshots";
-  @Getter
-  private static final String testDataFilePath =
-    PROJECT_PATH + File.separator + "src/test/resources" + File.separator + "data" + File.separator + "testdata.xlsx";
-  @Getter
-  private static final String nodeJsPath = System.getenv("NODE_HOME") + File.separator + "node.exe";
+  public static final String CHROME_DRIVER_EXE_PATH =
+    TEST_RESOURCES_DIR + File.separator + "executables" + File.separator + "chromedriver.exe";
+  public static final String CONFIG_PROPERTIES_PATH =
+    TEST_RESOURCES_DIR + File.separator + "config" + File.separator + "config.properties";
+  public static final String CONFIG_JSON_PATH =
+    TEST_RESOURCES_DIR + File.separator + "config" + File.separator + "config.json";
+  public static final String TEST_DATA_FILEPATH =
+    TEST_RESOURCES_DIR + File.separator + "data" + File.separator + "testdata.xlsx";
+  public static final String APPIUM_SERVER_HOST = "127.0.0.1";
+  public static final int APPIUM_SERVER_PORT = 4723;
+  public static final String APPIUM_JS_PATH = System.getenv("APPIUM_HOME") + File.separator + "main.js";
+  public static final String CREDENTIALS_JSON = "data/credentials.json";
+  public static final long EXPLICIT_WAIT = 15;
+  public static final String TEST_DATA_SHEET = "TEST_DATA";
+  public static final String IOS_APP_PATH = "";
+  public static final String SCREENSHOT_PATH = PROJECT_PATH + File.separator + "screenshots";
+  public static final String NODEJS_PATH = System.getenv("NODE_HOME") + File.separator + "node.exe";
 
-  private static final String extentReportPath = PROJECT_PATH + File.separator + "extent-test-report";
-  private static final String appiumServerLogsPath = PROJECT_PATH + File.separator + "server-logs";
-  private static final String screenRecordingsPath = PROJECT_PATH + File.separator + "screen-recordings";
+  private static final String EXTENT_REPORT_PATH = PROJECT_PATH + File.separator + "extent-test-report";
+  private static final String APPIUM_SERVER_LOGS_PATH = PROJECT_PATH + File.separator + "server-logs";
+  private static final String SCREEN_RECORDING_PATH = PROJECT_PATH + File.separator + "screen-recordings";
 
   public static String getExtentReportPath() {
     if (PropertyUtils.getPropertyValue(ConfigProperties.OVERRIDE_REPORTS).equalsIgnoreCase("yes")) {
-      return extentReportPath + File.separator + "index.html";
+      return EXTENT_REPORT_PATH + File.separator + "index.html";
     } else {
-      return extentReportPath + File.separator + getCurrentDateTime() + File.separator + "index.html";
+      return EXTENT_REPORT_PATH + File.separator + getCurrentDateTime() + File.separator + "index.html";
     }
   }
 
   public static String getAppiumServerLogsPath() {
     if (PropertyUtils.getPropertyValue(ConfigProperties.OVERRIDE_SERVER_LOG).equalsIgnoreCase("yes")) {
-      return appiumServerLogsPath + File.separator + "server.log";
+      return APPIUM_SERVER_LOGS_PATH + File.separator + "server.log";
     } else {
-      return appiumServerLogsPath + File.separator + getCurrentDateTime() + File.separator + "server.log";
+      return APPIUM_SERVER_LOGS_PATH + File.separator + getCurrentDateTime() + File.separator + "server.log";
     }
   }
 
   public static String getScreenRecordingsPath() {
-    File screenRecordingsDir = new File(screenRecordingsPath);
+    File screenRecordingsDir = new File(SCREEN_RECORDING_PATH);
     if (!screenRecordingsDir.exists()) {
       screenRecordingsDir.mkdir();
     }
-    return screenRecordingsPath;
+    return SCREEN_RECORDING_PATH;
   }
 
   private static String getCurrentDateTime() {

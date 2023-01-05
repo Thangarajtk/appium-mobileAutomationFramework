@@ -22,7 +22,7 @@ public final class ExcelUtils {
   public static List<Map<String, String>> getTestDetails(String sheetName) {
     List<Map<String, String>> list;
 
-    try (FileInputStream fs = new FileInputStream(FrameworkConstants.getTestDataFilePath())) {
+    try (FileInputStream fs = new FileInputStream(FrameworkConstants.TEST_DATA_FILEPATH)) {
       XSSFWorkbook workbook = new XSSFWorkbook(fs);
       XSSFSheet sheet = workbook.getSheet(sheetName);
 

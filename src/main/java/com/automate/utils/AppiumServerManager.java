@@ -31,16 +31,16 @@ public final class AppiumServerManager {
 
   public static void startAppiumServer() {
     if (PropertyUtils.getPropertyValue(ConfigProperties.START_APPIUM_SERVER).equalsIgnoreCase("yes")) {
-      if (!AppiumServerManager.checkIfServerIsRunning(FrameworkConstants.getAppiumServerPort())) {
+      if (!AppiumServerManager.checkIfServerIsRunning(FrameworkConstants.APPIUM_SERVER_PORT)) {
         //Build the Appium service
         AppiumServiceBuilder builder = new AppiumServiceBuilder();
-        builder.usingDriverExecutable(new File(FrameworkConstants.getNodeJsPath()));
-        builder.withAppiumJS(new File(FrameworkConstants.getAppiumJsPath()));
-        builder.withIPAddress(FrameworkConstants.getAppiumServerHost());
-        builder.usingPort(FrameworkConstants.getAppiumServerPort());
-        builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
-        builder.withArgument(GeneralServerFlag.ALLOW_INSECURE, "chromedriver_autodownload");
-        builder.withLogFile(new File(FrameworkConstants.getAppiumServerLogsPath()));
+        builder.usingDriverExecutable(new File(FrameworkConstants.NODEJS_PATH))
+          .withAppiumJS(new File(FrameworkConstants.APPIUM_JS_PATH))
+          .withIPAddress(FrameworkConstants.APPIUM_SERVER_HOST)
+          .usingPort(FrameworkConstants.APPIUM_SERVER_PORT)
+          .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
+          .withArgument(GeneralServerFlag.ALLOW_INSECURE, "chromedriver_autodownload")
+          .withLogFile(new File(FrameworkConstants.getAppiumServerLogsPath()));
         //Start the server with the builder
         service = AppiumDriverLocalService.buildService(builder);
 //				service = AppiumDriverLocalService.buildDefaultService();

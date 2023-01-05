@@ -18,7 +18,7 @@ public final class ScreenshotUtils {
   @SneakyThrows
   public static void captureScreenshotAsFile(String testName) {
     File source = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
-    File destination = new File(FrameworkConstants.getScreenshotPath() + File.separator + testName + ".png");
+    File destination = new File(FrameworkConstants.SCREENSHOT_PATH + File.separator + testName + ".png");
     FileUtils.copyFile(source, destination);
   }
 

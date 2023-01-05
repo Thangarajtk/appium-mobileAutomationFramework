@@ -19,8 +19,8 @@ public final class ScreenRecordingUtils {
   }
 
   public static void stopScreenRecording(String methodName) {
-    String recordedVideoFile = ((CanRecordScreen) DriverManager.getDriver()).stopRecordingScreen();
-    String pathToWriteVideoFile = FrameworkConstants.getScreenRecordingsPath() + File.separator + methodName + ".mp4";
+    var recordedVideoFile = ((CanRecordScreen) DriverManager.getDriver()).stopRecordingScreen();
+    var pathToWriteVideoFile = FrameworkConstants.getScreenRecordingsPath() + File.separator + methodName + ".mp4";
     writeToOutputStream(pathToWriteVideoFile, recordedVideoFile);
   }
 

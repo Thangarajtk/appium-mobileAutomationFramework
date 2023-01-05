@@ -27,12 +27,12 @@ public final class Drivers {
 
   public static AppiumDriver<MobileElement> createAndroidDriverForNativeApp(String deviceName, String udid, int port, String emulator) {
     try {
-      DesiredCapabilities capability = new DesiredCapabilities();
+      var capability = new DesiredCapabilities();
       capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
       capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
       capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2); // Specific to Android
       capability.setCapability(MobileCapabilityType.UDID, udid); // To uniquely identify device
-      capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.getAndroidApkPath());
+      capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.ANDROID_APK_PATH);
       capability.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, getConfig(ConfigJson.APP_PACKAGE));
       capability.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, getConfig(ConfigJson.APP_ACTIVITY));
       capability.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT,
@@ -50,7 +50,7 @@ public final class Drivers {
 
   public static AppiumDriver<MobileElement> createAndroidDriverForWeb(String deviceName, String udid, int port, String emulator) {
     try {
-      DesiredCapabilities capability = new DesiredCapabilities();
+      var capability = new DesiredCapabilities();
       capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
       capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
       capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
@@ -72,12 +72,12 @@ public final class Drivers {
 
   public static AppiumDriver<MobileElement> createIOSDriverForNativeApp(String deviceName, String udid, int port) {
     try {
-      DesiredCapabilities capability = new DesiredCapabilities();
+      var capability = new DesiredCapabilities();
       capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.IOS);
       capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
       capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
       capability.setCapability(MobileCapabilityType.UDID, udid);
-      capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.getIosAppPath());
+      capability.setCapability(MobileCapabilityType.APP, FrameworkConstants.IOS_APP_PATH);
       capability.setCapability(IOSMobileCapabilityType.BUNDLE_ID, getConfig(ConfigJson.BUNDLE_ID));
       capability.setCapability(IOSMobileCapabilityType.WDA_LOCAL_PORT,
                                port); // To set different port for each thread - This port is used to communicate with WebDriverAgent driver
@@ -90,7 +90,7 @@ public final class Drivers {
 
   public static AppiumDriver<MobileElement> createIOSDriverForWeb(String deviceName, String udid, int port) {
     try {
-      DesiredCapabilities capability = new DesiredCapabilities();
+      var capability = new DesiredCapabilities();
       capability.setCapability(CapabilityType.PLATFORM_NAME, Platform.IOS);
       capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
       capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);

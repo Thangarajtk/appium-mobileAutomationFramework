@@ -25,7 +25,7 @@ public final class PropertyUtils {
   }
 
   public static String getPropertyValue(ConfigProperties key) {
-    loadProperties(FrameworkConstants.getConfigPropertiesPath());
+    loadProperties(FrameworkConstants.CONFIG_PROPERTIES_PATH);
     if (Objects.isNull(property.getProperty(key.name().toLowerCase())) || Objects.isNull(key.name().toLowerCase())) {
       throw new PropertyFileUsageException("Property name - " + key + " is not found. Please check the config.properties");
     }

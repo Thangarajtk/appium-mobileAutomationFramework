@@ -14,21 +14,21 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class DriverFactory {
 
-  public static void initializeDriver(MobilePlatformName mobilePlatformName, String devicename, String udid, int port,
+  public static void initializeDriver(MobilePlatformName mobilePlatformName, String deviceName, String udid, int port,
                                       String emulator) {
     AppiumDriver<MobileElement> driver;
     switch (mobilePlatformName) {
       case ANDROID:
-        driver = Drivers.createAndroidDriverForNativeApp(devicename, udid, port, emulator);
+        driver = Drivers.createAndroidDriverForNativeApp(deviceName, udid, port, emulator);
         break;
       case ANDROID_WEB:
-        driver = Drivers.createAndroidDriverForWeb(devicename, udid, port, emulator);
+        driver = Drivers.createAndroidDriverForWeb(deviceName, udid, port, emulator);
         break;
       case IOS:
-        driver = Drivers.createIOSDriverForNativeApp(devicename, udid, port);
+        driver = Drivers.createIOSDriverForNativeApp(deviceName, udid, port);
         break;
       case IOS_WEB:
-        driver = Drivers.createIOSDriverForWeb(devicename, udid, port);
+        driver = Drivers.createIOSDriverForWeb(deviceName, udid, port);
         break;
       default:
         throw new DriverInitializationException(

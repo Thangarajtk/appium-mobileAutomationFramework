@@ -27,7 +27,7 @@ public final class DataProviderUtils {
     String testName = method.getName();
 
     if (list.isEmpty())
-      list = ExcelUtils.getTestDetails(FrameworkConstants.getTestDataSheet());
+      list = ExcelUtils.getTestDetails(FrameworkConstants.TEST_DATA_SHEET);
 
     List<Map<String, String>> smallList = new ArrayList<>(list);
 

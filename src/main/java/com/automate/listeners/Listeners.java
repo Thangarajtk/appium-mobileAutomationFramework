@@ -1,7 +1,7 @@
 package com.automate.listeners;
 
 import com.automate.customannotations.FrameworkAnnotation;
-import com.automate.reports.ExtentReportLogStatus;
+import com.automate.reports.ExtentReportLogger;
 import com.automate.reports.ExtentReportManager;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -24,22 +24,22 @@ public class Listeners implements ITestListener, ISuiteListener {
     ExtentReportManager.addCategories(
       result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(FrameworkAnnotation.class).category());
     ExtentReportManager.addDevices();
-    ExtentReportLogStatus.logInfo("Test - <b>" + result.getMethod().getMethodName() + "</b> is started");
+    ExtentReportLogger.logInfo("Test - <b>" + result.getMethod().getMethodName() + "</b> is started");
   }
 
   @Override
   public void onTestSuccess(ITestResult result) {
-    ExtentReportLogStatus.logPass("Test - <b>" + result.getMethod().getMethodName() + "</b> is passed");
+    ExtentReportLogger.logPass("Test - <b>" + result.getMethod().getMethodName() + "</b> is passed");
   }
 
   @Override
   public void onTestFailure(ITestResult result) {
-    ExtentReportLogStatus.logFail("Test - <b>" + result.getMethod().getMethodName() + "</b> is failed", result.getThrowable());
+    ExtentReportLogger.logFail("Test - <b>" + result.getMethod().getMethodName() + "</b> is failed", result.getThrowable());
   }
 
   @Override
   public void onTestSkipped(ITestResult result) {
-    ExtentReportLogStatus.logSkip("Test - <b>" + result.getMethod().getMethodName() + "</b> is skipped");
+    ExtentReportLogger.logSkip("Test - <b>" + result.getMethod().getMethodName() + "</b> is skipped");
   }
 
   @Override
